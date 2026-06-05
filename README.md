@@ -55,7 +55,7 @@ Open your browser at: http://localhost:5173
 
 
 📁 Project Structure
-textspa-prueba/
+spa-prueba/
 ├── src/
 │   ├── views/          # Role-based views (Manager and Collaborator)
 │   ├── main.js         # Entry point
