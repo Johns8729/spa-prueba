@@ -1,56 +1,78 @@
 # 🚀 Riwi - Project Management Dashboard (SPA)
 
-Una **Single Page Application (SPA)** moderna y responsive para la gestión interna de proyectos. Cuenta con un dashboard dinámico con interfaz dual según el rol: **Manager** y **Collaborator**.
+A modern and responsive **Single Page Application (SPA)** for internal project management. It features a dynamic dashboard with dual interface depending on the user role: **Manager** and **Collaborator**.
 
-Desarrollada con **Vanilla JavaScript**, **Vite** y **Tailwind CSS**.
+Built with **Vanilla JavaScript**, **Vite**, and **Tailwind CSS**.
 
 ---
 
-## ✨ Características
+## ✨ Features
 
-### 👤 Control de Acceso por Roles
+### 👤 Role-Based Access Control
 
 - **Manager**:
-  - Acceso administrativo completo.
-  - Panel CRUD en tiempo real (Crear, Leer, Actualizar y Eliminar proyectos).
+  - Full administrative access.
+  - Real-time CRUD panel (Create, Read, Update and Delete projects).
 
 - **Collaborator**:
-  - Acceso restringido.
-  - Solo puede ver los proyectos asignados.
-  - Puede actualizar el estado de ejecución (`In Progress` / `Completed`).
+  - Restricted access.
+  - Can only view assigned projects.
+  - Can update the execution status (`In Progress` / `Completed`).
 
-### 📊 Dashboard Dinámico
+### 📊 Dynamic Dashboard
 
-- Contadores en tiempo real de:
-  - Total de Proyectos
-  - En Progreso
-  - Completados
+- Real-time counters for:
+  - Total Projects
+  - In Progress
+  - Completed
 
-Los datos se filtran según el usuario logueado.
+Data is filtered according to the logged-in user.
 
 ---
 
-## 🛠 Tecnologías Utilizadas
+## 🛠 Technologies Used
 
 - **Frontend**: Vanilla JavaScript + Vite
-- **Estilos**: Tailwind CSS
-- **Backend Simulado**: json-server
-- **Herramientas**: PostCSS, Autoprefixer
+- **Styling**: Tailwind CSS
+- **Simulated Backend**: json-server
+- **Tools**: PostCSS, Autoprefixer
 
 ---
+Install dependencies:
 
-## 📋 Requisitos Previos
+Bashnpm install
 
-Tener **Node.js** instalado (versión LTS recomendada).
+Start the data server (json-server):
 
-### Instalación de Node.js
+Bashnpm run server
+(Run in one terminal)
 
-#### Windows / macOS
-1. Ve a [nodejs.org](https://nodejs.org/)
-2. Descarga la versión **LTS**
-3. Instala y reinicia tu terminal / VS Code
+Start the application (in another terminal):
 
-#### Linux (Ubuntu/Debian)
+Bashnpm run dev
+
+Open your browser at: http://localhost:5173
+
+
+📁 Project Structure
+textspa-prueba/
+├── src/
+│   ├── views/          # Role-based views (Manager and Collaborator)
+│   ├── main.js         # Entry point
+│   └── style.css       # Custom styles
+├── db.json             # Simulated database
+├── index.html
+├── package.json
+├── tailwind.config.js
+└── README.md
+
+👥 Test Users
+The project includes test users in db.json. You can use them to test both roles.
+
+📄 License
+This project was created as part of a challenge/academic assignment for Riwi.
+
+Ready to impress! ✨
 ```bash
 sudo apt update
 sudo apt install nodejs npm
