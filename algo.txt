@@ -1,0 +1,14 @@
+SPA_PRUEBA/                     <-- Tu carpeta principal (la raíz)
+├── node_modules/               # (Esta carpeta se crea sola al escribir npm install)
+├── src/                        <-- Carpeta contenedora del código fuente
+│   ├── views/                  <-- Subcarpeta para las pantallas
+│   │   ├── dashboard.js        # Va AQUÍ adentro
+│   │   └── login.js            # Va AQUÍ adentro
+│   ├── main.js                 # Va AQUÍ adentro (junto a la carpeta views)
+│   └── style.css               # Va AQUÍ adentro (junto a main.js)
+├── db.json                     # Va afuera, en la RAÍZ
+├── index.html                  # Va afuera, en la RAÍZ
+├── package.json                # Va afuera, en la RAÍZ
+├── postcss.config.js           # Va afuera, en la RAÍZ
+├── tailwind.config.js          # Va afuera, en la RAÍZ
+└── README.md                   # Va afuera, en la RAÍZ
