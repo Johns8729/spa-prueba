@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Manager",
+      "email": "manager@test.com",
+      "password": "123456",
+      "role": "manager"
+    },
+    {
+      "id": 2,
+      "name": "Collaborator",
+      "email": "user@test.com",
+      "password": "123456",
+      "role": "collaborator"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Website Redesign",
+      "description": "Corporate website redesign and optimization.",
+      "status": "In Progress",
+      "assignedTo": 2,
+      "createdAt": "2026-06-01"
+    },
+    {
+      "id": 2,
+      "name": "API Integration",
+      "description": "Backend services connectivity with payment gateway.",
+      "status": "Completed",
+      "assignedTo": 2,
+      "createdAt": "2026-06-03"
+    },
+    {
+      "name": "hollaa",
+      "description": "sssws",
+      "status": "Completed",
+      "assignedTo": 2,
+      "createdAt": "2026-06-05",
+      "id": 3
+    },
+    {
+      "name": "ssss",
+      "description": "sss",
+      "status": "In Progress",
+      "assignedTo": 2,
+      "createdAt": "2026-06-05",
+      "id": 4
+    }
+  ]
+}
