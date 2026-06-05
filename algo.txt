@@ -12,3 +12,107 @@ SPA_PRUEBA/                     <-- Tu carpeta principal (la raíz)
 ├── postcss.config.js           # Va afuera, en la RAÍZ
 ├── tailwind.config.js          # Va afuera, en la RAÍZ
 └── README.md                   # Va afuera, en la RAÍZ
+
+Paso 1: Configurar tailwind.config.js
+Abre tu archivo de configuración de Tailwind y añade la propiedad darkMode: 'selector'. Esto le indica a Tailwind que active los estilos oscuros cuando encuentre la clase .dark en los niveles superiores del HTML.
+
+JavaScript
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: 'selector', // 👈 Añade esta línea
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/views/**/*.{js,ts,jsx,tsx}"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+Paso 2: Agregar el Botón e Interactividad en src/views/dashboard.js
+Vamos a colocar un botón con iconos (o texto) en el Navbar de tu dashboard y programar la lógica para que alterne la clase, guardando además la preferencia en el navegador (localStorage) para que no se borre al recargar.
+
+Busca tu función renderDashboard y actualízala con esta estructura:
+
+JavaScript
+export async function renderDashboard(container) {
+  // ... (Tus peticiones fetch y lógica de métricas se quedan igual) ...
+
+  // 1. Validar el tema guardado antes de renderizar el botón
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  const isDark = currentTheme === 'dark';
+  
+  // Aplicar la clase al documento raíz según corresponda
+  if (isDark) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
+  // 2. Inyectar el HTML utilizando las variantes 'dark:' de Tailwind
+  container.innerHTML = `
+    <!-- El contenedor principal cambia de color dinámicamente con dark:bg-slate-900 -->
+    <div class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 flex flex-col w-full transition-colors duration-300">
+      
+      <!-- NAVBAR -->
+      <nav class="w-full bg-white border-b border-slate-200 dark:bg-slate-800 dark:border-slate-700 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl font-black tracking-wider text-indigo-600 dark:text-indigo-400">&lt;/Riwi&gt;</span>
+          <h1 class="text-lg font-bold hidden sm:block">Project Manager</h1>
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <!-- 🔘 BOTÓN INTERRUPTOR DE MODO OSCURO -->
+          <button id="theme-toggle" class="p-2 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 transition-colors text-sm font-semibold">
+            ${isDark ? '☀️ Modo Claro' : '🌙 Modo Oscuro'}
+          </button>
+
+          <button id="logout-btn" class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all">
+            Cerrar Sesión
+          </button>
+        </div>
+      </nav>
+
+      <!-- CONTENEDOR PRINCIPAL -->
+      <main class="flex-1 w-full max-w-7xl mx-auto p-6 flex flex-col gap-8">
+        
+        <!-- TARJETAS (Cambian de bg-white a dark:bg-slate-800) -->
+        <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full">
+          <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+            <span class="text-xs font-bold text-slate-400 uppercase">Total Proyectos</span>
+            <div class="text-3xl font-extrabold mt-2">${projects.length}</div>
+          </div>
+          <!-- Agrega las demás tarjetas con la misma estructura de clases -->
+        </section>
+
+        <!-- PANEL DE LA TABLA -->
+        <section class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 w-full">
+          <!-- Contenido de tu tabla... usa 'dark:text-white', 'dark:bg-slate-900', etc. -->
+        </section>
+
+      </main>
+    </div>
+  `;
+
+  // 3. PROGRAMAR LA LÓGICA DEL BOTÓN
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  
+  themeToggleBtn.addEventListener('click', () => {
+    // Alterna la clase 'dark' en la etiqueta <html>
+    const root = document.documentElement;
+    const isCurrentlyDark = root.classList.toggle('dark');
+    
+    if (isCurrentlyDark) {
+      localStorage.setItem('theme', 'dark');
+      themeToggleBtn.textContent = '☀️ Modo Claro';
+    } else {
+      localStorage.setItem('theme', 'light');
+      themeToggleBtn.textContent = '🌙 Modo Oscuro';
+    }
+  });
+
+  // ... (Tus eventos de logout y acciones del CRUD se mantienen abajo) ...
+}
+¿Cómo funciona este método?
+Cualquier clase de Tailwind que empiece con el prefijo dark: (por ejemplo, dark:bg-slate-900 o dark:border-slate-700) se activará automáticamente de forma interna en cascada solo cuando el botón inyecte la clase dark en la raíz de tu sitio. El cambio es instantáneo, fluido y completamente nativo.
