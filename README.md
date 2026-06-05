@@ -1,78 +1,75 @@
-# 🚀 Riwi - Project Management Dashboard (SPA)
+# Riwi Project Manager
 
-A modern and responsive **Single Page Application (SPA)** for internal project management. It features a dynamic dashboard with dual interface depending on the user role: **Manager** and **Collaborator**.
+A Single Page Application (SPA) for project management built with JavaScript, Vite, Tailwind CSS, and JSON Server.
 
-Built with **Vanilla JavaScript**, **Vite**, and **Tailwind CSS**.
+## Features
 
----
+* Role-based authentication (Manager & Collaborator)
+* Project creation, editing, and deletion
+* Project assignment and status tracking
+* Dashboard with project metrics
+* Responsive user interface
 
-## ✨ Features
+## Tech Stack
 
-### 👤 Role-Based Access Control
+* JavaScript (ES6 Modules)
+* Vite
+* Tailwind CSS
+* JSON Server
 
-- **Manager**:
-  - Full administrative access.
-  - Real-time CRUD panel (Create, Read, Update and Delete projects).
+## Project Structure
 
-- **Collaborator**:
-  - Restricted access.
-  - Can only view assigned projects.
-  - Can update the execution status (`In Progress` / `Completed`).
-
-### 📊 Dynamic Dashboard
-
-- Real-time counters for:
-  - Total Projects
-  - In Progress
-  - Completed
-
-Data is filtered according to the logged-in user.
-
----
-
-## 🛠 Technologies Used
-
-- **Frontend**: Vanilla JavaScript + Vite
-- **Styling**: Tailwind CSS
-- **Simulated Backend**: json-server
-- **Tools**: PostCSS, Autoprefixer
-
----
-Install dependencies:
-
-Bashnpm install
-
-Start the data server (json-server):
-
-Bashnpm run server
-(Run in one terminal)
-
-Start the application (in another terminal):
-
-Bashnpm run dev
-
-Open your browser at: http://localhost:5173
-
-
-📁 Project Structure
+```text
 spa-prueba/
 ├── src/
-│   ├── views/          # Role-based views (Manager and Collaborator)
-│   ├── main.js         # Entry point
-│   └── style.css       # Custom styles
-├── db.json             # Simulated database
+│   ├── views/
+│   │   ├── dashboard.js
+│   │   └── login.js
+│   ├── main.js
+│   └── style.css
+├── db.json
 ├── index.html
 ├── package.json
+├── package-lock.json
+├── postcss.config.js
 ├── tailwind.config.js
 └── README.md
+```
 
-👥 Test Users
-The project includes test users in db.json. You can use them to test both roles.
+db.json
+package.json
+vite.config.js
+tailwind.config.js
+postcss.config.js
+index.html
+```
 
-📄 License
-This project was created as part of a challenge/academic assignment for Riwi.
+## Installation
 
-Ready to impress! ✨
 ```bash
-sudo apt update
-sudo apt install nodejs npm
+git clone https://github.com/Johns8729/spa-prueba.git
+cd spa-prueba
+npm install
+```
+
+## Run
+
+```bash
+npm run server
+npm run dev
+```
+
+## Test Credentials
+
+**Manager**
+
+* [manager@test.com](mailto:manager@test.com)
+* 123456
+
+**Collaborator**
+
+* [user@test.com](mailto:user@test.com)
+* 123456
+
+```
+```
